@@ -42,5 +42,5 @@ func Interfaces() error {
 		fmt.Printf("Interface: '%s', Netmask: '%s'\n", k, v)
 	}
 
-    return nil
+	return nil
 }

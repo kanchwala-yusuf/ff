@@ -22,7 +22,7 @@ func GetPods(ns string) error {
 			podIP     = pod.Status.PodIP
 			podLabels = pod.ObjectMeta.Labels
 		)
-        podLabels["Name"] = podName
+		podLabels["Name"] = podName
 		IPCache[podIP] = podLabels
 	}
 

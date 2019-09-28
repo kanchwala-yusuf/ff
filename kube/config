@@ -1,0 +1,26 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURDekNDQWZPZ0F3SUJBZ0lRTDF3ZjVMVEtTTjd6ZnArUTFJOXFWREFOQmdrcWhraUc5dzBCQVFzRkFEQXYKTVMwd0t3WURWUVFERXlRME1USTRZMlExT1MwMFl6RTFMVFExTmpFdE9XUmhaUzAzTWpreFpXTTFaamxqWkRJdwpIaGNOTVRrd09UQTVNVEV5T0RBd1doY05NalF3T1RBM01USXlPREF3V2pBdk1TMHdLd1lEVlFRREV5UTBNVEk0ClkyUTFPUzAwWXpFMUxUUTFOakV0T1dSaFpTMDNNamt4WldNMVpqbGpaREl3Z2dFaU1BMEdDU3FHU0liM0RRRUIKQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURUZ1JQNXgyZGlYWUZHL01vaWxBODErUC83V2RBNnAzS3FrNnYwT0IrVApnL1p5N01kaHZkM0VMeTh6V0Jlek1ZdWxPVHVNalM3R09HMnpXckkxTmxvbGFFcnBMdXlaY2hhdnB1Q3N6bDRPCkZ4ckRWSmN4TmxCMnN1QVEvbEY1VURBTGg2N0dDVTRpNFc5eXpjWUg2ZjMxQzUxd2xBeXdFMDNKSStxNEtoUnMKNGdnZXBWSlJKaDRrK3VERmdrZVlNeUlvYWw0aThGa0xyS0VwV1RKdTVjNzRieHRDWkZwM2pTT1I5U1BQRW5JeQpYRFFZeCttdFBmTWRhQkpXdEthcStVK05CYXhvS1ovaGs3T0xSTmQ4QjNNdC9IRkIyUVZ4ckN1Y1A4VkJycDV5Ck5rS01taU5JRGVqb0lUd3B6Y0Z0d2h3Q25BVGpJUytBblVBN29aZXZUR1hCQWdNQkFBR2pJekFoTUE0R0ExVWQKRHdFQi93UUVBd0lDQkRBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDYwpOOGo3SmJFZ0UxNXFEbVJKL0c2VmRacUs5MWxvbDNxaDRacUsxN0NmQ1IzaVFuc0pxai9TNUM3cDVTV29uSXZTCkl2S3FkalZlb3Y2RE5MbVR5VVpjOEwrcjkvRGRsbnNydU1MaTB2bllrNk1mLytuUWJHVEgwZ0syYmZXT3BobkcKVXdEVUFGU2RveGZGSHFTS0ZyMGpoSEJ6OFozN3BwZjdWTDBITWtzMjV5ajAzbGM5V0pKRFhHY21HekkxM3ZmbQptOGN3L3pLQWthUzl4cHY5TnlOS3VsV1ZJeG95aVRCZTUxQXZrTWhEWGgraGRkWU4wZzd2S1JRZHEzcmxIK3VVCjJYbTJRNzBiSXo4VnZFVTZCUU9INkZUTTdXeDJKYkJnMnNaYkRUR0pvR0l5SnpTdHpkV3l3ZCt4cUhnOGxNU0cKQlJhdTZEZjlQSEQ5YTNqdS9mSEEKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://35.200.168.63
+  name: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+contexts:
+- context:
+    cluster: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+    user: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+  name: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+current-context: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+kind: Config
+preferences: {}
+users:
+- name: gke_gde-vishalbiyani_asia-south1-a_vishal-pg
+  user:
+    auth-provider:
+      config:
+        access-token: ya29.ImaRB60WpW1OQg3swJzhY1LJVpWVin93R_CTVnCboEiDjgsJCuVwJt3tVvUwLznXebvol67lBW9r-uq2PPkMzXtiQv6266cX0smQsk5t_ob2QI3uHMBk8tR5EV1RAl25ciNAFZLx74s
+        cmd-args: config config-helper --format=json
+        cmd-path: /home/user/google-cloud-sdk/bin/gcloud
+        expiry: "2019-09-28T05:44:20Z"
+        expiry-key: '{.credential.token_expiry}'
+        token-key: '{.credential.access_token}'
+      name: gcp
