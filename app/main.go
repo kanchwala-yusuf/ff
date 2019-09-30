@@ -18,9 +18,11 @@ func main() {
 
 	for _, ns := range namespaces {
 
+		/*
 		if ns == "kube-system" {
 			continue
 		}
+		*/
 
 		err := k8s.GetPods(ns)
 		if err != nil {
@@ -44,11 +46,25 @@ func main() {
 			}
 
 			if ip4Net.Contains(net.ParseIP(ip)) {
-				fmt.Printf("ip '%s' belongs to network '%s' on interface '%s'", ip, netmask, iface)
+				fmt.Printf("ip '%s' belongs to network '%s' on interface '%s'\n", ip, netmask, iface)
 				IfMap[iface] += 1
 			}
 		}
 	}
 
 	fmt.Printf("IfMap:\n'%+v'\n", IfMap)
+
+	var iface string
+	count := 0
+
+	for k, v := range IfMap {
+		if v > count {
+			iface = k
+			count = v
+		}
+	}
+
+	fmt.Printf("Monitor interface: '%s'\n", iface)
+
+	network.NetworkCapture(iface)
 }
