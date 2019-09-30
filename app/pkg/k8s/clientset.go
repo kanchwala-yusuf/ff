@@ -8,7 +8,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
-	"github.com/FlowFabric/app/pkg/config"
+	"github.com/ff/app/pkg/config"
 )
 
 // CreateClientSet create kubernetes client using the kubeconfig path

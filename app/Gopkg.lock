@@ -72,6 +72,18 @@
   revision = "24818f796faf"
 
 [[projects]]
+  digest = "1:7f4a1262a7b322e29c5fadfe25c8d2c47b5a73fb903db701b58b676e381dc75e"
+  name = "github.com/google/gopacket"
+  packages = [
+    ".",
+    "layers",
+    "pcap",
+  ]
+  pruneopts = "UT"
+  revision = "6d3e2615da4ed2ed2a349918fe74e7e6d03482fa"
+  version = "v1.1.17"
+
+[[projects]]
   digest = "1:75eb87381d25cc75212f52358df9c3a2719584eaa9685cd510ce28699122f39d"
   name = "github.com/googleapis/gnostic"
   packages = [
@@ -438,6 +450,9 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/google/gopacket",
+    "github.com/google/gopacket/layers",
+    "github.com/google/gopacket/pcap",
     "k8s.io/apimachinery/pkg/apis/meta/v1",
     "k8s.io/client-go/kubernetes",
     "k8s.io/client-go/plugin/pkg/client/auth",

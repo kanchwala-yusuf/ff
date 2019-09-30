@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/FlowFabric/app/pkg/k8s"
-	"github.com/FlowFabric/app/pkg/network"
+	"github.com/ff/app/pkg/k8s"
+	"github.com/ff/app/pkg/network"
 )
 
 func main() {
