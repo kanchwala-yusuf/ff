@@ -2,29 +2,34 @@ package network
 
 import (
 	"fmt"
+	"log"
+	"time"
+
 	"github.com/ff/app/pkg/k8s"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 	"github.com/google/gopacket/pcap"
-	"log"
-	"time"
 )
 
 var (
-	snapshot_len int32 = 1024
-	promiscuous  bool  = false
-	err          error
-	timeout      time.Duration = 30 * time.Second
-	handle       *pcap.Handle
+	snapshotlen int32 = 1024
+	promiscuous       = false
+	err         error
+	timeout     time.Duration = 30 * time.Second
+	handle      *pcap.Handle
+
 	// Will reuse these for each packet
 	ethLayer layers.Ethernet
 	ipLayer  layers.IPv4
 	tcpLayer layers.TCP
 )
 
-func NetworkCapture(iface string) {
+// Capture captures network traffic and adds pod info into the network
+// traffic output
+func Capture(iface string) {
+
 	// Open device
-	handle, err = pcap.OpenLive(iface, snapshot_len, promiscuous, timeout)
+	handle, err = pcap.OpenLive(iface, snapshotlen, promiscuous, timeout)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -51,16 +56,16 @@ func NetworkCapture(iface string) {
 				srcVal := ipLayer.SrcIP.String()
 				dstVal := ipLayer.DstIP.String()
 
-				if _, ok := k8s.IPCache[srcVal]; ok {
-					srcVal = k8s.IPCache[srcVal]["Name"]
+				// Add pod info
+				if _, ok := k8s.IPPodMap[srcVal]; ok {
+					srcVal = k8s.IPPodMap[srcVal]["Name"]
 				}
 
-				if _, ok := k8s.IPCache[dstVal]; ok {
-					dstVal = k8s.IPCache[dstVal]["Name"]
+				if _, ok := k8s.IPPodMap[dstVal]; ok {
+					dstVal = k8s.IPPodMap[dstVal]["Name"]
 				}
 
 				fmt.Println("IPv4: ", srcVal, "->", dstVal)
-
 			}
 			if layerType == layers.LayerTypeTCP {
 				fmt.Println("TCP Port: ", tcpLayer.SrcPort, "->", tcpLayer.DstPort)

@@ -2,45 +2,47 @@ package network
 
 import (
 	"fmt"
+	"log"
 	"net"
-	"regexp"
 	"strings"
 )
 
-var (
-	netmaskPattern  = regexp.MustCompile("((\\d){1,3}\\.){3}(\\d){1,3}\\/(\\d){1,3}")
-	IfaceNetmaskMap = make(map[string]string)
-)
+// UpdateIfaceCIDRMap adds all the interfaces and respective CIDRs to the IfaceCIDRMap
+func UpdateIfaceCIDRMap() error {
 
-func Interfaces() error {
-
+	// Get all the network interfaces
 	ifaces, err := net.Interfaces()
 	if err != nil {
-		fmt.Printf("Failed to get network Interfaces. Error: '%s'\n", err.Error())
+		errMsg := fmt.Sprintf("Failed to get network Interfaces. Error: '%s'\n", err.Error())
+		log.Println(errMsg)
+		return fmt.Errorf(errMsg)
 	}
 
+	// Add all the network interfaces and CIDR to the IfaceCIDRMap
 	for _, i := range ifaces {
 
+		// If network interface is not UP, continue ahead!
 		if !strings.Contains(i.Flags.String(), "up") {
-			fmt.Printf("Interface '%s' is not UP\n", i.Name)
+			// log.Printf("Interface '%s' is not UP", i.Name)
 			continue
 		}
 
+		// Get all the interface addresses
 		addrs, err := i.Addrs()
 		if err != nil {
-			fmt.Printf("Failed to fetch Addrs(). Error: '%s'\n", err.Error())
+			errMsg := fmt.Sprintf("Failed to fetch interface addresses. Error: '%s'", err.Error())
+			log.Println(errMsg)
+			return fmt.Errorf(errMsg)
 		}
 
+		// Add valid CIDRs to the IfaceCIDRMap
 		for _, a := range addrs {
-			if netmaskPattern.MatchString(a.String()) {
-				IfaceNetmaskMap[i.Name] = a.String()
+			if CIDRPattern.MatchString(a.String()) {
+				IfaceCIDRMap[i.Name] = a.String()
 			}
 		}
 	}
 
-	for k, v := range IfaceNetmaskMap {
-		fmt.Printf("Interface: '%s', Netmask: '%s'\n", k, v)
-	}
-
+	// Successfull
 	return nil
 }
