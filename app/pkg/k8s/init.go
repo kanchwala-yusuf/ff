@@ -13,6 +13,9 @@ func init() {
 	}
 	ClientSet = clientSet
 
+	// Update IPPodMap
+	UpdateIPPodMap()
+
 	// Periodically update IPPodMap
 	go PeriodicUpdateIPPodMap()
 }

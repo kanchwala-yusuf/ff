@@ -1,7 +1,7 @@
 package runtime
 
 import (
-	"fmt"
+	// "fmt"
 	"log"
 	"net"
 
@@ -19,7 +19,7 @@ func Start() {
 	// Populate the IfaceCount map
 	for ip, labels := range k8s.IPPodMap {
 
-		fmt.Printf("IPAddress: '%s', Labels: '%s'", ip, labels)
+		// fmt.Printf("IPAddress: '%s', Labels: '%s'\n", ip, labels)
 
 		for iface, cidr := range network.IfaceCIDRMap {
 
@@ -32,13 +32,13 @@ func Start() {
 
 			// Check if the "ip" address belongs to the current "cidr"
 			if ip4Net.Contains(net.ParseIP(ip)) {
-				fmt.Printf("ip '%s' belongs to network '%s' on interface '%s'", ip, cidr, iface)
+				// fmt.Printf("ip '%s' belongs to network '%s' on interface '%s'\n", ip, cidr, iface)
 				IfaceCount[iface]++
 			}
 		}
 	}
 
-	fmt.Printf("IfaceCount:\n'%+v'\n", IfaceCount)
+	// fmt.Printf("IfaceCount: '%+v'\n", IfaceCount)
 
 	// Figure out the network interface to be used for network capture
 	var iface string
@@ -51,7 +51,7 @@ func Start() {
 		}
 	}
 
-	log.Printf("Monitoring interface: '%s'", iface)
+	log.Printf("Monitoring network interface: '%s'", iface)
 
 	// Initiate network capture
 	network.Capture(iface)

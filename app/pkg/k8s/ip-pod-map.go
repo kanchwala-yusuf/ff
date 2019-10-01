@@ -66,6 +66,7 @@ func PeriodicUpdateIPPodMap() {
 	for {
 		select {
 		case <-ticker.C:
+			log.Println("Periodic update of IPPodMap...")
 			update()
 		}
 	}
